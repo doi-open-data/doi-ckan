@@ -2,21 +2,21 @@
 version: "3"
 
 services:
-#   ckan:
-#     image: datagov/catalog.data.gov:latest
-#     env_file:
-#       - .env
-#     depends_on:
-#       - db
-#       - solr
-#       - redis
-#       - datapusher
-#     ports:
-#       - "0.0.0.0:${CKAN_PORT}:5000"
-#     volumes:
-#       - ./src:/srv/app/src_extensions
-#       - ckan_storage:/var/lib/ckan
-#       - ./requirements:/requirements
+  ckan:
+    build:
+      context: ckan/
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - solr
+      - redis
+    ports:
+      - "0.0.0.0:${CKAN_PORT}:5000"
+    volumes:
+      - ./src:/srv/app/src_extensions
+      - ckan_storage:/var/lib/ckan
+      - ./requirements:/requirements
 
   db:
     env_file:
@@ -38,6 +38,6 @@ services:
     image: redis:alpine
 
 volumes:
-#   ckan_storage:
+  ckan_storage:
   pg_data:
   solr_data:
