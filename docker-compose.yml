@@ -18,9 +18,6 @@ services:
 #       - ckan_storage:/var/lib/ckan
 #       - ./requirements:/requirements
 
-  datapusher:
-    container_name: datapusher
-    image: keitaro/ckan-datapusher
   db:
     env_file:
       - .env
