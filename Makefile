@@ -1,7 +1,7 @@
-.PHONY: admin build clean test up update-dependencies
+.PHONY: admin build clean test seed-data up update-dependencies
 
 admin:
-	docker-compose exec ckan paster --plugin=ckan sysadmin -c /srv/app/production.ini add admin
+	docker-compose exec ckan paster --plugin=ckan sysadmin add admin -c /srv/app/production.ini
 
 build:
 	docker-compose build
@@ -15,6 +15,9 @@ hop-in:
 prune:
 	docker system prune -a
 	
+seed-data:
+	docker-compose exec ckan paster --plugin=ckan create-test-data -c /srv/app/production.ini
+
 up:
 	docker-compose up
 

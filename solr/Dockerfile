@@ -20,6 +20,7 @@ https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.2/
 
 # Create Core.properties
 RUN echo name=$SOLR_CORE > /opt/solr/server/solr/$SOLR_CORE/core.properties
+RUN echo dataDir=$/opt/solr/server/solr/$SOLR_CORE/data > /opt/solr/server/solr/$SOLR_CORE/core.properties
 
 # Giving ownership to Solr
 
