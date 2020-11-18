@@ -21,3 +21,6 @@ COPY requirements.txt ${APP_DIR}
 
 RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
+
+# needed for base
+# CMD ["/srv/app/start_ckan.sh"]

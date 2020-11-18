@@ -2,9 +2,9 @@
 version: "3"
 
 services:
-  ckan:
+  ckan-web:
     build:
-      context: ckan/
+      context: ckan-web/
     env_file:
       - .env
     depends_on:
@@ -17,6 +17,18 @@ services:
       - ./src:/srv/app/src_extensions
       - ckan_storage:/var/lib/ckan
       - ./requirements:/requirements
+
+  ckan-worker:
+    build:
+      context: ckan-worker/
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - solr
+      - redis
+    ports:
+      - "0.0.0.0:${CKAN_PORT}:5000"
 
   db:
     env_file:
