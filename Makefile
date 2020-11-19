@@ -1,4 +1,4 @@
-.PHONY: admin build clean test seed-data up update-dependencies
+.PHONY: admin build clean finalize-harvest test seed-data up update-dependencies
 
 admin:
 	docker-compose exec ckan-web paster --plugin=ckan sysadmin add admin -c /srv/app/production.ini
@@ -8,6 +8,9 @@ build:
 
 clean:
 	docker-compose down -v
+
+finalize-harvest:
+	docker-compose exec ckan-worker paster --plugin=ckanext-harvest harvester run
 
 hop-in:
 	docker-compose exec ckan-web /bin/bash

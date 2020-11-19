@@ -21,6 +21,9 @@ RUN cd /geos && \
 COPY requirements.txt ${APP_DIR}
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-COPY start_ckan${DEVELOP_MODE}.sh ${APP_DIR}
+# this commented line should be for production
+# COPY start_ckan.sh ${APP_DIR}
+COPY start_ckan_development.sh ${APP_DIR}
 COPY supervisor.worker.conf /etc/supervisord.d/worker.conf
-COPY docker-entrypoint.d/* /docker-entrypoint.d/
+# add this back in if we need extra setup steps
+# COPY docker-entrypoint.d/* /docker-entrypoint.d/

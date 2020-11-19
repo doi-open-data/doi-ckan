@@ -23,6 +23,11 @@ services:
       context: ckan-worker/
     env_file:
       - .env
+    depends_on:
+      - db
+      - solr
+      - redis
+      - ckan-web
 
   db:
     env_file:

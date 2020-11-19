@@ -74,5 +74,8 @@ then
     done
 fi
 
+echo "Going to sleep before starting harvesters zzz..."
+sleep 60
+
 # Start supervisord
-supervisord --configuration /etc/supervisord.conf &
+supervisord --configuration /etc/supervisord.conf
