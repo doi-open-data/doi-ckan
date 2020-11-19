@@ -17,10 +17,10 @@ RUN cd /geos && \
     make -j 1 && \
     make install
 
+
 COPY requirements.txt ${APP_DIR}
-COPY supervisor.worker.conf /etc/supervisord.d/worker.conf
-
 RUN pip install --upgrade pip && pip install -r requirements.txt
-COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
-CMD [$BINDIR/supervisord -c "/etc/supervisord.d/worker.conf"]
+COPY start_ckan${DEVELOP_MODE}.sh ${APP_DIR}
+COPY supervisor.worker.conf /etc/supervisord.d/worker.conf
+COPY docker-entrypoint.d/* /docker-entrypoint.d/

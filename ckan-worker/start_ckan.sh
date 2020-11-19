@@ -3,6 +3,7 @@
 # Run the prerun script to init CKAN and create the default admin user
 sudo -u ckan -EH python prerun.py
 
+
 # Run any startup scripts provided by images extending this one
 if [[ -d "/docker-entrypoint.d" ]]
 then
@@ -15,6 +16,8 @@ then
         echo
     done
 fi
+echo "Need to sleep before starting ckan workers. zzzz...."
+sleep 60
 
 # Start supervisor
 if [ $? -eq 0 ]
