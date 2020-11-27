@@ -5,7 +5,7 @@ services:
   ckan-web:
     build:
       context: ckan/
-    command: "/srv/app/start_ckan_development.sh web && sudo -u ckan -EH paster serve --reload $CKAN_INI"
+    command: "/srv/app/start_ckan_development.sh web"
     env_file:
       - .env
     depends_on:
@@ -22,7 +22,6 @@ services:
   ckan-worker:
     build:
       context: ckan/
-    command: "/srv/app/start_ckan_development.sh && supervisord --configuration /etc/supervisord.conf"
     env_file:
       - .env
     depends_on:
