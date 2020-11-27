@@ -49,6 +49,9 @@ paster --plugin=ckan config-tool $CKAN_INI -s DEFAULT "debug = true"
 echo "Loading the following plugins: $CKAN__PLUGINS"
 paster --plugin=ckan config-tool $CKAN_INI "ckan.plugins = $CKAN__PLUGINS"
 
+echo "Need to sleep before accessing the db. zzzz...."
+sleep 60
+
 # Update test-core.ini DB, SOLR & Redis settings
 echo "Loading test settings into test-core.ini"
 paster --plugin=ckan config-tool $SRC_DIR/ckan/test-core.ini \
@@ -60,6 +63,13 @@ paster --plugin=ckan config-tool $SRC_DIR/ckan/test-core.ini \
 
 # Run the prerun script to init CKAN and create the default admin user
 sudo -u ckan -EH python prerun.py
+
+# remove the 10-setup-harvest.sh from ckan-web; it's only needed for ckan-worker
+if [[ $1 == "web" ]]
+then
+    echo "Removing our worker.conf from ckan-web"
+    rm /etc/supervisord.d/worker.conf
+fi
 
 # Run any startup scripts provided by images extending this one
 if [[ -d "/docker-entrypoint.d" ]]
@@ -74,8 +84,8 @@ then
     done
 fi
 
-echo "Going to sleep before starting harvesters zzz..."
-sleep 60
-
 # Start supervisord
-supervisord --configuration /etc/supervisord.conf
+supervisord --configuration /etc/supervisord.conf &
+
+# Start the development server with automatic reload
+sudo -u ckan -EH paster serve --reload $CKAN_INI
