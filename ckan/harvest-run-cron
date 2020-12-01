@@ -1,1 +1,1 @@
-*/1 * * * * supervisorctl start ckan-worker-run
+*/15 * * * * supervisorctl start ckan-worker-run
