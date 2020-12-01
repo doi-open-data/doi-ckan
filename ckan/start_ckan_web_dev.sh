@@ -59,6 +59,14 @@ paster --plugin=ckan config-tool $SRC_DIR/ckan/test-core.ini \
     "solr_url = $TEST_CKAN_SOLR_URL" \
     "ckan.redis.url = $TEST_CKAN_REDIS_URL"
 
+# Update the theme for DOI
+paster --plugin=ckan config-tool $CKAN_INI \
+    "ckan.site_title = $CKAN__SITE_TITLE" \
+    "ckan.site_description = $CKAN__SITE_DESCRIPTION" \
+    "ckan.site_intro_text = $CKAN__SITE_INTRO_TEXT" \
+    "ckan.site_logo = $CKAN__SITE_LOGO" \
+    "ckan.site_about = $CKAN__SITE_ABOUT" \
+
 # Run the prerun script to init CKAN and create the default admin user
 sudo -u ckan -EH python prerun.py
 
