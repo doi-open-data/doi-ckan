@@ -1,0 +1,1 @@
+*/15 * * * * supervisorctl start ckan-worker-run

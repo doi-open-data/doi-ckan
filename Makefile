@@ -7,10 +7,7 @@ build:
 	docker-compose build
 
 clean:
-	docker-compose down -v
-
-finalize-harvest:
-	docker-compose exec ckan-worker paster --plugin=ckanext-harvest harvester run
+	docker-compose down -v --remove-orphans
 
 hop-in:
 	docker-compose exec ckan-web /bin/bash

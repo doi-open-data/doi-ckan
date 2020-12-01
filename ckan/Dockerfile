@@ -22,5 +22,12 @@ COPY requirements.txt ${APP_DIR}
 RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
-# needed for base
-# CMD ["/srv/app/start_ckan.sh"]
+COPY start_ckan_web_dev.sh ${APP_DIR}
+# production
+COPY start_ckan_web.sh ${APP_DIR}
+
+COPY prerun.py ${APP_DIR}
+
+COPY start_ckan_worker.sh ${APP_DIR}
+COPY supervisor.worker.conf /etc/supervisord.d/worker.conf
+COPY harvest-run-cron /etc/crontabs/root

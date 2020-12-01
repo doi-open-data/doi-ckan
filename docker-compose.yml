@@ -4,7 +4,8 @@ version: "3"
 services:
   ckan-web:
     build:
-      context: ckan-web/
+      context: ckan/
+    command: "/srv/app/start_ckan_web_dev.sh"
     env_file:
       - .env
     depends_on:
@@ -20,7 +21,8 @@ services:
 
   ckan-worker:
     build:
-      context: ckan-worker/
+      context: ckan/
+    command: "/srv/app/start_ckan_worker.sh"
     env_file:
       - .env
     depends_on:
