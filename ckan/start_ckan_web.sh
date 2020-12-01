@@ -37,8 +37,6 @@ then
       exit 1
     fi
   else
-    # Start supervisord
-    supervisord --configuration /etc/supervisord.conf &
     # Start uwsgi
     sudo -u ckan -EH uwsgi $UWSGI_OPTS
   fi

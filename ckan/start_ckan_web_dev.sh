@@ -75,13 +75,4 @@ then
     done
 fi
 
-# remove the harvest jobs from web and start server; worker is "else"
-if [[ $1 == "web" ]]
-then
-    echo "Removing worker.conf from ckan-web"
-    rm /etc/supervisord.d/worker.conf
-    supervisord --configuration /etc/supervisord.conf &
-    sudo -u ckan -EH paster serve --reload $CKAN_INI
-else
-    supervisord --configuration /etc/supervisord.conf
-fi
+sudo -u ckan -EH paster serve --reload $CKAN_INI
