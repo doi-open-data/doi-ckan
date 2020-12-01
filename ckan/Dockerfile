@@ -30,3 +30,4 @@ COPY prerun.py ${APP_DIR}
 
 COPY start_ckan_worker.sh ${APP_DIR}
 COPY supervisor.worker.conf /etc/supervisord.d/worker.conf
+COPY harvest-run-cron /etc/crontabs/root

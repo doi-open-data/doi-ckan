@@ -12,4 +12,5 @@ paster --plugin=ckan config-tool $CKAN_INI "ckan.plugins = $CKAN__PLUGINS"
 # sudo -u ckan -EH python prerun.py
 sleep 100
 
+chown root:root /etc/crontabs/root && /usr/sbin/crond -f & 
 supervisord --configuration /etc/supervisord.conf
