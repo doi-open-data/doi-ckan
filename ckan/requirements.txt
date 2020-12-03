@@ -13,7 +13,7 @@ cffi==1.12.3
 chardet==3.0.4
 -e git+https://github.com/ckan/ckan.git@eca78d5df65414249c5a76620c1acae1ddc76cc3#egg=ckan
 -e git+https://github.com/GSA/ckanext-datagovcatalog.git@73c6949559bab1ef571656b1c30220eef20685d8#egg=ckanext-datagovcatalog
--e git+https://github.com/doi-open-data/ckanext-datagovtheme.git@0117a1c5f69f10c5804dafa42315a5bfbcd4e1b4#egg=ckanext-datagovtheme
+-e git+https://github.com/doi-open-data/ckanext-datagovtheme.git@058b67ff58567bd7a3b7ebff9f786e2fa8c4f213#egg=ckanext-datagovtheme
 -e git+https://github.com/GSA/ckanext-datajson.git@a66f314333862bc316086a25e735f472cb5b29fe#egg=ckanext-datajson
 -e git+https://github.com/ckan/ckanext-dcat@6b7ec505f303fb18e0eebcebf67130d36b3dca82#egg=ckanext-dcat
 ckanext-envvars==0.0.1
