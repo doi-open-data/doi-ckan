@@ -15,6 +15,30 @@ This is the Department of the Interior's Open Data Portal powered by CKAN.
 1. To create an admin user, run `make admin` and follow the prompts for email and password
 1. To stop your containers and volumes run `make clean`
 
+### FGDC2ISO
+
+In order to harvest an CSDGM/FGDC metadata source, you will need to have a running FGDC2ISO service available.
+This is set in the .env file under `CKANEXT__GEODATAGOV__FGDC2ISO__SERVICE`.
+If you would like to have a system running on your local system, follow the 
+[setup instructions](https://github.com/GSA/catalog-fgdc2iso). 
+You will need to make the application available on the docker-compose network built here, 
+so add the following lines to the fgdc2iso docker-compose file (after doi-ckan is built and running):
+
+```
+networks:
+  default:
+    external:
+      name: doi-ckan_default
+```
+Then spin up catalog-fgdc2iso using `docker-compose up`, and you should have a working service
+to transform CSDGM metadata into ISO.
+
+#### Current issues/workarounds
+Currently, the FGDC2ISO repo does not build properly with a saxon-license file.
+A workaround was implemented, where we added the DOI file as `saxon-license-doi.lic`,
+and then changed line 9 of the docker-compose file from `./saxon-license.lic:/etc/saxon-license.lic`
+to be `./saxon-license-doi.lic:/etc/saxon-license.lic`
+
 ### Helpful Commands
 
 - Start a command-prompt for the application: `make hop-in`

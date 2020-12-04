@@ -9,6 +9,9 @@ build:
 clean:
 	docker-compose down -v --remove-orphans
 
+finalize-harvest:
+	docker-compose exec ckan-worker supervisorctl start ckan-worker-run
+
 hop-in:
 	docker-compose exec ckan-web /bin/bash
 
