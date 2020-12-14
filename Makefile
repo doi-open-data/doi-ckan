@@ -8,8 +8,8 @@ build:
 
 check-harvests:
 	python tools/harvest_source_import/check_harvest_sources.py
-	python tools/harvest_source_import/list_harvest_sources.py
-	python tools/harvest_source_import/list_harvest_sources.py --origin_url http://localhost:5000
+	python tools/harvest_source_import/list_harvest_sources.py --file_name report-prod
+	python tools/harvest_source_import/list_harvest_sources.py --origin_url http://localhost:5000 --file_name report-local
 
 clean:
 	docker-compose down -v --remove-orphans
