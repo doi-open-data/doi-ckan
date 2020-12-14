@@ -15,7 +15,7 @@ args = parser.parse_args()
 
 ckan = RemoteCKAN(url=args.origin_url, user_agent=args.user_agent)
 
-csvfile = open(f'report-{args.source_type}.csv', 'w')
+csvfile = open(f'report-{args.origin_url}.csv', 'w')
 fieldnames = ['title', 'name', 'type', 'url', 'frequency',
               'job_count', 'total_datasets', 'last_job_errored', 'last_job_created',
               'last_job_finished', 'last_job_status']

@@ -35,13 +35,24 @@ local_ckan = RemoteCKAN(url=args.destination_url)
 remote_ckan = RemoteCKAN(url=args.origin_url)
 remote_ckan.set_destination(ckan_url=args.destination_url, ckan_api_key=args.destination_api_key)
 
-# we get a list of names from a file or list of source names 
-if os.path.isfile(args.names_to_test):
-    f = open(args.names_to_test)
-    names = f.read().splitlines()
-    f.close()
+# we get a list of names from a file or list of source names
+if args.names_to_test is not None:
+    if os.path.isfile(args.names_to_test):
+        f = open(args.names_to_test)
+        names = f.read().splitlines()
+        f.close()
+    else:
+        names = args.names_to_test.split(',')
 else:
-    names = args.names_to_test.split(',')
+    names = []
+    # for hs in local_ckan.list_harvest_sources(source_type=args.source_type):
+    #     names.append(hs)
+    for hs in remote_ckan.list_harvest_sources(source_type=args.source_type):
+        # for item in hs:
+        #     print("Key : {}".format(item))
+        names.append(hs['name'])
+
+print(names)
 
 report_file_name = f'report-checks.csv'
 fieldnames = ['name', 'url', 'config', 'source_type', 'status', 'last_job_status',

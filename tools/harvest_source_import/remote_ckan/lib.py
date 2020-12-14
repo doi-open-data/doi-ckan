@@ -495,9 +495,6 @@ class RemoteCKAN:
             created, status, error = self.update_organization(data=organization)
         else:
             created, status, error = self.request_ckan(method='POST', url=org_create_url, data=organization)
-            logger.info(created)
-            logger.info(status)
-            logger.info(error)
 
         return created, status, error
 

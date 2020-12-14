@@ -6,6 +6,11 @@ admin:
 build:
 	docker-compose build
 
+check-harvests:
+	python tools/harvest_source_import/check_harvest_sources.py
+	python tools/harvest_source_import/list_harvest_sources.py
+	python tools/harvest_source_import/list_harvest_sources.py --origin_url http://localhost:5000
+
 clean:
 	docker-compose down -v --remove-orphans
 
@@ -20,6 +25,10 @@ prune:
 	
 seed-data:
 	docker-compose exec ckan-web paster --plugin=ckan create-test-data -c /srv/app/production.ini
+
+seed-harvests:
+	python tools/harvest_source_import/import_harvest_sources.py
+	docker-compose exec ckan-worker bash -c 'paster --plugin=ckanext-harvest harvester job-all -c $CKAN_INI'
 
 test-import-tool:
 	cd tools/harvest_source_import && \
