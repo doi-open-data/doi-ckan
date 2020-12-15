@@ -60,6 +60,7 @@ else:
 # produce summary df
 summary_df = pd.concat([dataset_compare, error_compare.drop(columns='title')], axis='columns')
 summary_df = summary_df.loc[(summary_df.local_prod_diff < threshold) | (summary_df.error_diff > error_threshold)]
+summary_df.sort_values(by=['local_prod_diff','error_diff'], inplace=True)
 # print(pdtabulate(summary_df))
 # save to local path
 path_to_save = os.path.join(data_path, '../../summary_stats.csv')
