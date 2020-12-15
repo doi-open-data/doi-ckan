@@ -9,8 +9,8 @@ pdtabulate=lambda df:tabulate(df,headers='keys',tablefmt='psql', showindex='neve
 try:
     # read in our data
     data_path = os.path.join(os.path.dirname(os.path.realpath(__file__)))
-    pdata = pd.read_csv(os.path.join(data_path, '../../report-prod.csv'))
-    ldata = pd.read_csv(os.path.join(data_path, '../../report-local.csv'))
+    pdata = pd.read_csv(os.path.join(data_path, './report-prod.csv'))
+    ldata = pd.read_csv(os.path.join(data_path, './report-local.csv'))
 except:
     print('Could not read data. Error: {}'.format(sys.exc_info()))
 

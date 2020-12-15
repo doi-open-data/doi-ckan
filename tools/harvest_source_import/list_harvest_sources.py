@@ -2,6 +2,7 @@
 Read Harvest source and write a CSV report
 '''
 
+import os
 import argparse
 import csv
 from remote_ckan.lib import RemoteCKAN
@@ -16,7 +17,8 @@ args = parser.parse_args()
 
 ckan = RemoteCKAN(url=args.origin_url, user_agent=args.user_agent)
 
-csvfile = open(f'{args.file_name}.csv', 'w')
+csv_output = os.path.join(os.path.dirname(os.path.realpath(__file__)), args.file_name + '.csv')
+csvfile = open(csv_output, 'w')
 fieldnames = ['title', 'name', 'type', 'url', 'frequency',
               'job_count', 'total_datasets', 'last_job_errored', 'last_job_created',
               'last_job_finished', 'last_job_status']
