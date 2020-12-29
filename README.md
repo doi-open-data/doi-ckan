@@ -15,6 +15,13 @@ This is the Department of the Interior's Open Data Portal powered by CKAN.
 1. To create an admin user, run `make admin` and follow the prompts for email and password
 1. To stop your containers and volumes run `make clean`
 
+### Updating Dependencies
+The application uses the [requirements-freeze.txt file](./ckan/requirements-freeze.txt) for it dependency management. This is update via the [requirements.txt file](./ckan/requirements.txt). To update the dependencies you need to run:
+
+`make clean requirements build up`
+
+This will start a fresh build, update the requirements-freeze.txt file, rebuild the application, and bring it up. You should be able to see the application if you point your browser to localhost:5000
+
 ### FGDC2ISO
 
 In order to harvest an CSDGM/FGDC metadata source, you will need to have a running FGDC2ISO service available.
@@ -34,6 +41,7 @@ Then spin up catalog-fgdc2iso using `docker-compose up`, and you should have a w
 to transform CSDGM metadata into ISO.
 
 #### Current issues/workarounds
+
 Currently, the FGDC2ISO repo does not build properly with a saxon-license file.
 A workaround was implemented, where we added the DOI file as `saxon-license-doi.lic`,
 and then changed line 9 of the docker-compose file from `./saxon-license.lic:/etc/saxon-license.lic`

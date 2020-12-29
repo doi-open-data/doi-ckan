@@ -1,7 +1,4 @@
-.PHONY: admin build clean finalize-harvest test seed-data up update-dependencies
-
-admin:
-	docker-compose exec ckan-web paster --plugin=ckan sysadmin add admin -c /srv/app/production.ini
+.PHONY: admin build clean finalize-harvest test prune up requirements
 
 build:
 	docker-compose build
@@ -22,9 +19,6 @@ hop-in:
 
 prune:
 	docker system prune -a
-	
-seed-data:
-	docker-compose exec ckan-web paster --plugin=ckan create-test-data -c /srv/app/production.ini
 
 seed-harvests:
 	python tools/harvest_source_import/import_harvest_sources.py
@@ -50,4 +44,4 @@ up:
 	docker-compose up
 
 requirements:
-	docker-compose run --rm -T ckan-web pip --quiet freeze > requirements-freeze.txt
+	docker-compose run --rm -T ckan-web pip --quiet freeze > ckan/requirements-freeze.txt
