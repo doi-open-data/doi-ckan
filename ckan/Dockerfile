@@ -17,9 +17,9 @@ RUN cd /geos && \
     make -j 1 && \
     make install
 
-COPY requirements.txt ${APP_DIR}
+COPY requirements-freeze.txt ${APP_DIR}
 
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN pip install --upgrade pip && pip install -r requirements-freeze.txt
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
 COPY start_ckan_web_dev.sh ${APP_DIR}

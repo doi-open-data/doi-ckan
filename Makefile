@@ -48,3 +48,6 @@ test-user-remove:
 
 up:
 	docker-compose up
+
+requirements:
+	docker-compose run --rm -T ckan-web pip --quiet freeze > requirements-freeze.txt
