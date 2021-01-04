@@ -16,11 +16,14 @@ This is the Department of the Interior's Open Data Portal powered by CKAN.
 1. To stop your containers and volumes run `make clean`
 
 ### Updating Dependencies
-The application uses the [requirements-freeze.txt file](./ckan/requirements-freeze.txt) for it dependency management. This is update via the [requirements.txt file](./ckan/requirements.txt). To update the dependencies you need to run:
+The application uses the [requirements-freeze.txt file](./ckan/requirements-freeze.txt) for it dependency management. This is updated via the [requirements.txt file](./ckan/requirements.txt). To update the dependencies you need to run:
 
-`make clean requirements build up`
+`make clean build requirements  up`
 
-This will start a fresh build, update the requirements-freeze.txt file, rebuild the application, and bring it up. You should be able to see the application if you point your browser to localhost:5000
+This will start a fresh build, update the requirements-freeze.txt file, and bring it up.
+You should be able to see the application if you point your browser to localhost:5000.
+Since integration tests are not implemented, manual verification of key usage 
+(harvests, dataset pages, api, etc) should be done before pushing.
 
 ### FGDC2ISO
 

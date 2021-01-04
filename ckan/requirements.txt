@@ -8,7 +8,7 @@ ckanext-envvars
 -e git+https://github.com/GSA/ckanext-geodatagov.git@master#egg=ckanext-geodatagov
 -e git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@master#egg=ckanext-googleanalyticsbasic
 -e git+https://github.com/ckan/ckanext-harvest.git@master#egg=ckanext-harvest
--e git+https://github.com/ckan/ckanext-spatial.git@datagov#egg=ckanext-spatial
+-e git+https://github.com/ckan/ckanext-spatial.git@master#egg=ckanext-spatial
 
 # ckanext-harvest
 cffi==1.12.3
@@ -32,7 +32,7 @@ rfc3987
 
 # ckanext-geodatagov
 -e git+https://github.com/asl2/PyZ3950.git@c2282c73182cef2beca0f65b1eb7699c9b24512e#egg=PyZ3950
-ply = "3.4"
+ply==3.4
 boto
 # required to boto plugin to upload to S3 in some internal commands
 google_compute_engine==2.8.13

@@ -5,6 +5,8 @@ services:
   ckan-web:
     build:
       context: ckan/
+      args:
+        REQUIREMENTS_FILE: requirements.txt
     command: "/srv/app/start_ckan_web_dev.sh"
     env_file:
       - .env

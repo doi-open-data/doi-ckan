@@ -1,7 +1,7 @@
 # FROM openknowledge/ckan-base:2.8 -- in future, may use this as well
 FROM openknowledge/ckan-dev:2.8
 
-MAINTAINER Open Knowledge International <info@okfn.org>
+ARG REQUIREMENTS_FILE=requirements-freeze.txt
 
 ENV GIT_BRANCH=2.8
 
@@ -17,9 +17,9 @@ RUN cd /geos && \
     make -j 1 && \
     make install
 
-COPY requirements-freeze.txt ${APP_DIR}
+COPY ${REQUIREMENTS_FILE} ${APP_DIR}/requirements.txt
 
-RUN pip install --upgrade pip && pip install -r requirements-freeze.txt
+RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
 COPY start_ckan_web_dev.sh ${APP_DIR}

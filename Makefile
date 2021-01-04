@@ -20,6 +20,9 @@ hop-in:
 prune:
 	docker system prune -a
 
+requirements:
+	docker-compose run --rm -T ckan-web pip --quiet freeze > ckan/requirements-freeze.txt
+
 seed-harvests:
 	python tools/harvest_source_import/import_harvest_sources.py
 	docker-compose exec ckan-worker bash -c 'paster --plugin=ckanext-harvest harvester job-all -c $CKAN_INI'
@@ -42,6 +45,3 @@ test-user-remove:
 
 up:
 	docker-compose up
-
-requirements:
-	docker-compose run --rm -T ckan-web pip --quiet freeze > ckan/requirements-freeze.txt
