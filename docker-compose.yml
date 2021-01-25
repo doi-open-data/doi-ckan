@@ -52,6 +52,17 @@ services:
   redis:
     image: redis:alpine
 
+  cypress:
+    image: cypress/base:10
+    command: sh -c "npm install --save-dev cypress && npx cypress verify"
+    depends_on:
+      - ckan-web
+    environment:
+      - CYPRESS_baseUrl=http://ckan-web
+    volumes:
+      - ./cypress/cypress:/app/cypress
+      - ./cypress/cypress.json:/app/cypress.json
+
 volumes:
   ckan_storage:
   pg_data:
