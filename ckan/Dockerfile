@@ -22,7 +22,7 @@ COPY ${REQUIREMENTS_FILE} ${APP_DIR}/requirements.txt
 # https://github.com/geerlingguy/JJG-Ansible-Windows/issues/28#ref-commit-b854e7a
 RUN apk add --no-cache libffi-dev openssl-dev python3-dev
 
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN pip install "pip>=0.20.3.4,<21.0" && pip install -r requirements.txt
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
 # COPY start_ckan_web_dev.sh ${APP_DIR}
