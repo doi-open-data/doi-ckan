@@ -3,6 +3,11 @@
 build:
 	docker-compose build
 
+build-prod:
+	docker-compose down -v --remove-orphans
+	CKAN_ENV=prod docker-compose build --no-cache
+	CKAN_ENV=prod docker-compose up -c /srv/app/start_ckan_web.sh
+
 check-harvests:
 	python tools/harvest_source_import/list_harvest_sources.py --file_name report-prod
 	python tools/harvest_source_import/list_harvest_sources.py --origin_url http://localhost:5000 --file_name report-local
