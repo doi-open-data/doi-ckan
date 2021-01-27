@@ -15,6 +15,13 @@ This is the Department of the Interior's Open Data Portal powered by CKAN.
 1. To create an admin user, run `make admin` and follow the prompts for email and password
 1. To stop your containers and volumes run `make clean`
 
+### Release
+
+To build a production ready version of the application, you will want to clean and rebuild:
+`make nocache=TRUE clean build-prod up-prod`. This will clean and rebuild the ckan image
+for production, ignoring any cache.
+Then, you can push this image to AWS for deployment (TODO: add details/commands here)
+
 ### Updating Dependencies
 The application uses the [requirements-freeze.txt file](./ckan/requirements-freeze.txt) for it dependency management. This is updated via the [requirements.txt file](./ckan/requirements.txt). To update the dependencies you need to run:
 
