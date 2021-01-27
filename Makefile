@@ -1,12 +1,14 @@
 .PHONY: admin build clean finalize-harvest test prune up requirements
 
 build:
-	docker-compose build
+	docker-compose build --build-arg ckan_env=development
 
 build-prod:
 	docker-compose down -v --remove-orphans
-	CKAN_ENV=prod docker-compose build --no-cache
-	CKAN_ENV=prod docker-compose up -c /srv/app/start_ckan_web.sh
+	docker-compose build --no-cache --build-arg ckan_env=production
+	docker-compose up -c /srv/app/start_ckan_web.sh
+
+run-prod: clean build up build-prod 
 
 check-harvests:
 	python tools/harvest_source_import/list_harvest_sources.py --file_name report-prod

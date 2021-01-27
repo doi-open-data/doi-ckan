@@ -2,6 +2,10 @@
 FROM openknowledge/ckan-base:2.8
 
 ARG REQUIREMENTS_FILE=requirements-freeze.txt
+# specify the build arg (either development or prod)
+ARG ckan_env
+
+ENV GIT_BRANCH=2.8
 
 # Shapely Error
 ADD http://download.osgeo.org/geos/geos-3.7.0.tar.bz2 /geos/geos.tar.bz2
@@ -29,10 +33,10 @@ COPY supervisor.worker.conf /etc/supervisord.d/worker.conf
 COPY harvest-run-cron /etc/crontabs/root
 
 # Dev additions
-RUN if ["$CKAN_ENV" = "development"]; then \
+RUN if [ "${ckan_env}" = "development" ]; then \
         apk add vim; \
         pip install --no-binary :all: -r https://raw.githubusercontent.com/ckan/ckan/${GIT_BRANCH}/dev-requirements.txt; \
         mkdir $SRC_EXTENSIONS_DIR; \
     fi
 
-COPY start_ckan_development.sh ${APP_DIR}
+COPY start_ckan_web_dev.sh ${APP_DIR}
