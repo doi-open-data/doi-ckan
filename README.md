@@ -50,10 +50,14 @@ A workaround was implemented, where we added the DOI file as `saxon-license-doi.
 and then changed line 9 of the docker-compose file from `./saxon-license.lic:/etc/saxon-license.lic`
 to be `./saxon-license-doi.lic:/etc/saxon-license.lic`
 
-### Helpful Commands
+### How to Run Local Tests
 
-- Start a command-prompt for the application: `make hop-in`
-- To completely clean your docker instances run  `make clean` then `make prune`
+1. Bring your app service up with `make clean build up`
+1. Verify that the app comes up by hitting `http://localhost:5000` from your browser
+1. Bring the FGDC2ISO service up (see steps above)
+1. Create a user with `make test-user`
+1. Import all harvest sources from production to your local instance and start them with `make seed-harvests` (this will take awhile)
+1. Evaluate your local harvest sources compared with prod `make check-harvests`
 
 
 ### Useful Sites
