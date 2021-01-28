@@ -61,5 +61,5 @@ up:
 	docker-compose up
 
 up-prod:
-	docker-compose stop ckan-web ; docker-compose run -d --service-ports --use-aliases ckan-web /srv/app/start_ckan_web.sh
-	docker-compose stop ckan-worker ; docker-compose run --service-ports --no-deps --use-aliases ckan-worker /srv/app/start_ckan_worker.sh
+	docker-compose up -d
+	docker-compose stop ckan-web ; docker-compose run --service-ports --use-aliases ckan-web /srv/app/start_ckan_web.sh
