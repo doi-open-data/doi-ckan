@@ -15,10 +15,35 @@ This is the Department of the Interior's Open Data Portal powered by CKAN.
 1. To create an admin user, run `make admin` and follow the prompts for email and password
 1. To stop your containers and volumes run `make clean`
 
+### Release
+
+To build a production ready version of the application, you will want to clean and rebuild:
+`make nocache=TRUE clean build-prod up-prod`. This will clean and rebuild the ckan image
+for production, ignoring any cache.
+
+Then, you can push this image to AWS for deployment by following the following steps. For many commands, you'll need the ecr-uri which you can find by running `ecr describe-repositories`
+
+Authenticate your AWS cli with:
+`aws ecr get-login-password --region us-east-1| docker login --username AWS --password-stdin <ecr-uri>`
+
+Then the steps are to 1) tag your image & 2) push to aws
+
+Tag:
+You'll want to run `docker images` to list all images on your current system. As of the first iteration, the repo is `doi-ckan_ckan-web` and the tag is `latest`. That yields the first part of the command.
+
+The second part is what we want the repo:tag name to be on aws. In this case it's repo: `doi-ckan` and tag: `ckan`
+
+In the first iteration, the tag command is:
+`docker tag doi-ckan_ckan-web:latest <ecr-repo-uri>/doi-ckan:ckan`
+
+Push:
+Now push your image with this command:
+`docker push <ecr-repo-uri>/doi-ckan:ckan`
+
 ### Updating Dependencies
 The application uses the [requirements-freeze.txt file](./ckan/requirements-freeze.txt) for it dependency management. This is updated via the [requirements.txt file](./ckan/requirements.txt). To update the dependencies you need to run:
 
-`make clean build requirements  up`
+`make clean build requirements up`
 
 This will start a fresh build, update the requirements-freeze.txt file, and bring it up.
 You should be able to see the application if you point your browser to localhost:5000.
@@ -50,10 +75,14 @@ A workaround was implemented, where we added the DOI file as `saxon-license-doi.
 and then changed line 9 of the docker-compose file from `./saxon-license.lic:/etc/saxon-license.lic`
 to be `./saxon-license-doi.lic:/etc/saxon-license.lic`
 
-### Helpful Commands
+### How to Run Local Tests
 
-- Start a command-prompt for the application: `make hop-in`
-- To completely clean your docker instances run  `make clean` then `make prune`
+1. Bring your app service up with `make clean build up`
+1. Verify that the app comes up by hitting `http://localhost:5000` from your browser
+1. Bring the FGDC2ISO service up (see steps above)
+1. Create a user with `make test-user`. Verify that you have an `api.key` file at the root of this directory.
+1. Import all harvest sources from production to your local instance and start them with `make seed-harvests` (this will take awhile)
+1. Evaluate your local harvest sources compared with prod `make check-harvests`
 
 
 ### Useful Sites

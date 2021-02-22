@@ -1,7 +1,21 @@
 .PHONY: admin build clean finalize-harvest test prune up requirements
 
-build:
+build-prod:
 	docker-compose build
+ifeq ($(nocache),"TRUE")
+	docker-compose build --no-cache --build-arg CKAN_ENV=prod ckan-web
+	docker-compose build --no-cache --build-arg CKAN_ENV=prod ckan-worker
+else
+	docker-compose build --build-arg CKAN_ENV=prod ckan-web
+	docker-compose build --build-arg CKAN_ENV=prod ckan-worker
+endif
+
+build:
+ifeq ($(nocache),"TRUE")
+	docker-compose build --no-cache
+else
+	docker-compose build
+endif
 
 check-harvests:
 	python tools/harvest_source_import/list_harvest_sources.py --file_name report-prod
@@ -45,3 +59,7 @@ test-user-remove:
 
 up:
 	docker-compose up
+
+up-prod:
+	docker-compose up -d
+	docker-compose stop ckan-web ; docker-compose run --service-ports --use-aliases ckan-web /srv/app/start_ckan_web.sh
