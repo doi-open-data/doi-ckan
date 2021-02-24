@@ -8,7 +8,7 @@ services:
       args:
         REQUIREMENTS_FILE: requirements.txt
         CKAN_ENV: development
-    command: "/srv/app/start_ckan_web_dev.sh"
+    command: "/srv/app/start_ckan_web.sh"
     env_file:
       - .env
     depends_on:
@@ -25,7 +25,7 @@ services:
   ckan-worker:
     build:
       context: ckan/
-    command: "/srv/app/start_ckan_worker.sh"
+    command: "/srv/app/start_ckan_worker.sh ckan-web 5000"
     env_file:
       - .env
     depends_on:
