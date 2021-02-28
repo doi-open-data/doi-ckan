@@ -1,19 +1,19 @@
 .PHONY: admin build clean finalize-harvest test prune up requirements
 
 build-prod:
-	docker-compose build
 ifeq ($(nocache),"TRUE")
-	docker-compose build --no-cache --build-arg CKAN_ENV=prod ckan-web
-	docker-compose build --no-cache --build-arg CKAN_ENV=prod ckan-worker
+	docker build --no-cache -t doi-ckan:latest ckan/
 else
-	docker-compose build --build-arg CKAN_ENV=prod ckan-web
-	docker-compose build --build-arg CKAN_ENV=prod ckan-worker
+	docker build -t doi-ckan:latest ckan/
 endif
+	docker-compose build
 
 build:
 ifeq ($(nocache),"TRUE")
+	docker build --no-cache --build-arg CKAN_ENV=development -t doi-ckan:latest ckan/
 	docker-compose build --no-cache
 else
+	docker build --build-arg CKAN_ENV=development -t doi-ckan:latest ckan/
 	docker-compose build
 endif
 

@@ -3,11 +3,12 @@ version: "3"
 
 services:
   ckan-web:
-    build:
-      context: ckan/
-      args:
-        REQUIREMENTS_FILE: requirements.txt
-        CKAN_ENV: development
+    image: doi/ckan:latest
+    # build:
+    #   context: ckan/
+    #   args:
+    #     REQUIREMENTS_FILE: requirements.txt
+    #     CKAN_ENV: development
     command: "/srv/app/start_ckan_web_dev.sh"
     env_file:
       - .env
@@ -23,8 +24,9 @@ services:
       - ./requirements:/requirements
 
   ckan-worker:
-    build:
-      context: ckan/
+    image: doi/ckan:latest
+    # build:
+    #   context: ckan/
     command: "/srv/app/start_ckan_worker.sh"
     env_file:
       - .env
