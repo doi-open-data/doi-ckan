@@ -21,7 +21,7 @@ To build a production ready version of the application, you will want to clean a
 `make nocache=TRUE clean build-prod up-prod`. This will clean and rebuild the ckan image
 for production, ignoring any cache.
 
-Then, you can push this image to AWS for deployment by following the following steps. For many commands, you'll need the ecr-uri which you can find by running `aws ecr describe-repositories`
+Then, you can push this image to AWS for deployment by following the following steps. For many commands, you'll need the ecr-uri which you can find by running `aws ecr describe-repositories` and referencing the `repositoryUri` field.
 
 Authenticate your AWS cli with docker:
 `aws ecr get-login-password --region us-east-1| docker login --username AWS --password-stdin <ecr-uri>`
