@@ -25,7 +25,7 @@ services:
   ckan-worker:
     build:
       context: ckan/
-    command: "/srv/app/start_ckan_worker.sh"
+    command: "/srv/app/start_ckan_worker.sh paster --plugin=ckan search-index rebuild -c /srv/app/production.ini"
     env_file:
       - .env
     depends_on:

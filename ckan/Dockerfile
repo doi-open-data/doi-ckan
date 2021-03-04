@@ -34,6 +34,8 @@ COPY start_ckan_worker.sh ${APP_DIR}
 COPY supervisor.worker.conf /etc/supervisord.d/worker.conf
 COPY harvest-run-cron /etc/crontabs/root
 
+COPY configs/export.map.json src/ckanext-datajson/ckanext/datajson/export_map/export.map.json
+
 # Dev additions
 RUN if [ "${CKAN_ENV}" = "development" ]; then \
         apk add vim; \

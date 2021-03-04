@@ -22,5 +22,6 @@ function wait_for () {
 
 wait_for ckan-web 5000
 
-chown root:root /etc/crontabs/root && /usr/sbin/crond -f & 
+chown root:root /etc/crontabs/root && /usr/sbin/crond -f &
+"$@" & 
 supervisord --configuration /etc/supervisord.conf
