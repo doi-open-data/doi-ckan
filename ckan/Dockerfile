@@ -2,6 +2,7 @@
 FROM openknowledge/ckan-base:2.8
 
 ARG REQUIREMENTS_FILE=requirements-freeze.txt
+ARG APP_DIR=/srv/app
 # specify the build arg (either development or prod)
 ARG CKAN_ENV=PROD
 
