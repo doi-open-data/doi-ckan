@@ -23,7 +23,7 @@ services:
   ckan-worker:
     image: doi-ckan:latest
     # image: doi-ckan:dev
-    command: "/srv/app/start_ckan_worker.sh"
+    command: "/srv/app/start_ckan_worker.sh wait_for_init ckan-web 5000"
     env_file:
       - .env
     depends_on:

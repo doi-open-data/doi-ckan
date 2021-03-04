@@ -8,53 +8,53 @@ on:
   push:
 
 jobs:
-  # test:
-  #   name: 'Test'
-  #   runs-on: ubuntu-latest
+  test:
+    name: 'Test'
+    runs-on: ubuntu-latest
 
-  #   # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
-  #   defaults:
-  #     run:
-  #       shell: bash
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
 
-  #   # Checkout the repository to the GitHub Actions runner
-  #   steps:
-  #     - name: checkout
-  #       uses: actions/checkout@v2
+    # Checkout the repository to the GitHub Actions runner
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
       
-  #     - name: build
-  #       run: make build
+      - name: build
+        run: make build
 
-  #     - name: up
-  #       run: docker-compose up -d
+      - name: up
+        run: docker-compose up -d
       
-  #     - name: test
-  #       run: |
-  #         sleep 30
-  #         make test
+      - name: test
+        run: |
+          sleep 30
+          make test
 
   deploy-xentity:
-    # if: github.ref == 'refs/heads/production'
+    if: github.ref == 'refs/heads/production'
     name: deploy (staging)
     environment: staging
     runs-on: ubuntu-latest
-    # needs:
-    #   - test
+    needs:
+      - test
     steps:
       - name: checkout
         uses: actions/checkout@v2
 
-      # - name: Push new images
-      #   uses: kciter/aws-ecr-action@master
-      #   with:
-      #     access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     account_id: ${{ secrets.AWS_ACCOUNT_ID }}
-      #     repo: ${{ secrets.REPO_NAME }}
-      #     region: ${{ secrets.REGION }}
-      #     tags: ckan
-      #     dockerfile: ckan/Dockerfile
-      #     path: ckan/
+      - name: Push new images
+        uses: kciter/aws-ecr-action@master
+        with:
+          access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          account_id: ${{ secrets.AWS_ACCOUNT_ID }}
+          repo: ${{ secrets.REPO_NAME }}
+          region: ${{ secrets.REGION }}
+          tags: ckan
+          dockerfile: ckan/Dockerfile
+          path: ckan/
 
       - name: Deploy latest images
         uses: ItsKarma/aws-cli@v1.70.0
