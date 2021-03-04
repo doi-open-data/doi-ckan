@@ -8,30 +8,30 @@ on:
   push:
 
 jobs:
-  test:
-    name: 'Test'
-    runs-on: ubuntu-latest
+  # test:
+  #   name: 'Test'
+  #   runs-on: ubuntu-latest
 
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
-    defaults:
-      run:
-        shell: bash
+  #   # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+  #   defaults:
+  #     run:
+  #       shell: bash
 
-    # Checkout the repository to the GitHub Actions runner
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
+  #   # Checkout the repository to the GitHub Actions runner
+  #   steps:
+  #     - name: checkout
+  #       uses: actions/checkout@v2
       
-      - name: build
-        run: make build
+  #     - name: build
+  #       run: make build
 
-      - name: up
-        run: make up
+  #     - name: up
+  #       run: docker-compose up -d
       
-      - name: test
-        run: |
-          sleep 10
-          make test
+  #     - name: test
+  #       run: |
+  #         sleep 30
+  #         make test
 
   deploy-xentity:
     # if: github.ref == 'refs/heads/production'
