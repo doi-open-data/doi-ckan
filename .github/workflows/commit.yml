@@ -52,14 +52,14 @@ jobs:
           account_id: ${{ secrets.AWS_ACCOUNT_ID }}
           repo: ${{ secrets.REPO_NAME }}
           region: ${{ secrets.REGION }}
-          tags: CKAN,ckan,latest
+          tags: ckan
           dockerfile: ckan/Dockerfile
           path: ckan/
 
       - name: Deploy latest images
         uses: ItsKarma/aws-cli@v1.70.0
         with:
-          args: aws ecs update-service --cluster $CLUSTER --service $SERVICE --force-new-deployment
+          args: ecs update-service --cluster $CLUSTER --service $SERVICE --force-new-deployment
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
