@@ -53,6 +53,7 @@ jobs:
           repo: ${{ secrets.REPO_NAME }}
           region: ${{ secrets.REGION }}
           tags: CKAN,ckan,latest
+          dockerfile: ckan/Dockerfile
           path: ckan/
 
       - name: Deploy latest images
