@@ -1,21 +1,12 @@
 .PHONY: admin build clean finalize-harvest test prune up requirements
 
-build-prod:
-ifeq ($(nocache),"TRUE")
-	docker build --no-cache -t doi-ckan:latest ckan/
-else
+build:
 	docker build -t doi-ckan:latest ckan/
-endif
 	docker-compose build
 
-build:
-ifeq ($(nocache),"TRUE")
-	docker build --no-cache --build-arg CKAN_ENV=development -t doi-ckan:latest ckan/
-	docker-compose build --no-cache
-else
-	docker build --build-arg CKAN_ENV=development -t doi-ckan:latest ckan/
+build-dev:
+	docker build --build-arg CKAN_ENV=development -t doi-ckan:dev ckan/
 	docker-compose build
-endif
 
 check-harvests:
 	python tools/harvest_source_import/list_harvest_sources.py --file_name report-prod
@@ -41,6 +32,9 @@ seed-harvests:
 	python tools/harvest_source_import/import_harvest_sources.py
 	docker-compose exec ckan-worker bash -c 'paster --plugin=ckanext-harvest harvester job-all -c $CKAN_INI'
 
+test:
+	curl --silent --fail http://localhost:5000
+
 test-import-tool:
 	cd tools/harvest_source_import && \
 		pip install --upgrade pip  && \
@@ -59,7 +53,3 @@ test-user-remove:
 
 up:
 	docker-compose up
-
-up-prod:
-	docker-compose up -d
-	docker-compose stop ckan-web ; docker-compose run --service-ports --use-aliases ckan-web /srv/app/start_ckan_web.sh
