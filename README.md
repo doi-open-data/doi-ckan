@@ -8,11 +8,23 @@ This is the Department of the Interior's Open Data Portal powered by CKAN.
 - [docker-compose](https://docs.docker.com/compose/)
 
 ### Development
+If you want a basic system stood up:
 
 1. run `make build`
 1. run `make up`
 1. point your browser to `localhost:5000`
-1. To create an admin user, run `make admin` and follow the prompts for email and password
+1. To create an admin user, run `make test-user` (creates username: `test-user` and pwd: `test-user-password`)
+1. To stop your containers and volumes run `make clean`
+
+If you want a fully debuggable instance:
+
+1. run `make build-dev`
+1. Edit docker-compose.yml file, 
+  - swap `image: doi-ckan:latest` for `image: doi-ckan:dev` on both ckan-web and ckan-worker
+  - swap `ckan-web` command (see comments in file)
+1. run `make up`
+1. point your browser to `localhost:5000`
+1. To create an admin user, run `make test-user` (creates username: `test-user` and pwd: `test-user-password`)
 1. To stop your containers and volumes run `make clean`
 
 ### Release
@@ -41,6 +53,7 @@ Now push your image with this command:
 `docker push <ecr-repo-uri>/doi-ckan:ckan`
 
 ### Updating Dependencies
+TODO: Fix this
 The application uses the [requirements-freeze.txt file](./ckan/requirements-freeze.txt) for it dependency management. This is updated via the [requirements.txt file](./ckan/requirements.txt). To update the dependencies you need to run:
 
 `make clean build requirements up`
