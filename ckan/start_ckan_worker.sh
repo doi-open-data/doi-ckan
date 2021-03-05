@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Set debug to true
-echo "Enabling debug mode"
-paster --plugin=ckan config-tool $CKAN_INI -s DEFAULT "debug = true"
-
 # Update the plugins setting in the ini file with the values defined in the env var
 echo "Loading the following plugins: $CKAN__PLUGINS"
 paster --plugin=ckan config-tool $CKAN_INI \
@@ -34,6 +30,7 @@ else
   # Run any extra commands given in the command line, such as solr reindex
   "$@"
 fi
+
 
 chown root:root /etc/crontabs/root && /usr/sbin/crond -f & 
 supervisord --configuration /etc/supervisord.conf
