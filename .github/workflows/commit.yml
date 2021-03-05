@@ -30,7 +30,7 @@ jobs:
       
       - name: test
         run: |
-          sleep 30
+          sleep 60
           make test
 
   deploy-xentity:

@@ -30,8 +30,12 @@ If you want a fully debuggable instance:
 ### Release
 
 To build a production ready version of the application, you will want to clean and rebuild:
-`make nocache=TRUE clean build-prod up-prod`. This will clean and rebuild the ckan image
+`clean build-prod up-prod`. This will clean and rebuild the ckan image
 for production, ignoring any cache.
+
+Pushing to aws is now automated through github actions. It will build, run tests, and deploy to aws upon a push to the `production` branch.
+
+If you need to manually push your image, follow the steps below.
 
 Then, you can push this image to AWS for deployment by following the following steps. For many commands, you'll need the ecr-uri which you can find by running `aws ecr describe-repositories` and referencing the `repositoryUri` field.
 
