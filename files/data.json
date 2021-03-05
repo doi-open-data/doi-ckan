@@ -1,0 +1,55 @@
+{
+    "conformsTo": "https://project-open-data.cio.gov/v1.1/schema", 
+    "describedBy": "https://project-open-data.cio.gov/v1.1/schema/catalog.json", 
+    "@context": "https://project-open-data.cio.gov/v1.1/schema/catalog.jsonld", 
+    "@type": "dcat:Catalog", 
+    "dataset": [
+        {
+            "@type": "dcat:Dataset", 
+            "title": "LEAN-Corrected San Francisco Bay Digital Elevation Model, 2018 ", 
+            "description": "Lidar-derived digital elevation models often contain a vertical bias due to vegetation. In areas with tidal influence the amount of bias can be ecologically significant, for example, by decreasing the expected inundation frequency. We generated a corrected digital elevation mode (DEM) for tidal marsh areas around San Francisco Bay using the Lidar Elevation Adjustment with NDVI (LEAN) technique (Buffington et al. 2016). Survey-grade GPS survey data (6614 points), NAIP-derived Normalized Difference Vegetation Index, and original 1 m lidar DEM from 2010 were used to generate a model of predicted bias across tidal marsh areas. The predicted bias was then subtracted from the original lidar DEM and merged with the NOAA Sea-Level Rise Viewer DEM to create a new seamless DEM for the San Francisco Bay. Across all GPS points, mean initial lidar error was 22.8 cm (SD=12.0) and root-mean squared error (RMSE) was 25.8 cm. After correction with LEAN, mean error was 0 (SD=0.07) and RMSE was 7.4 cm. References: Buffington, K.J., Dugger, B.D., Thorne, K.M. and Takekawa, J.Y., 2016. Statistical correction of lidar-derived digital elevation models with multispectral airborne imagery in tidal marshes. Remote Sensing of Environment, 186, pp.616-625.",
+            "keyword": ["digital elevation models", "wetlands", "san francisco bay", "estuary", "lidar"],
+            "modified": "2019-01-01T21:15:03.231200", 
+            "publisher": {
+              "@type": "org:Organization",
+              "name": "U.S. Geological Survey"
+            },
+            "contactPoint": {
+              "@type": "vcard:Contact",
+              "fn": "U.S. Geological Survey, Western Ecological Research Center (Point of Contact)",
+              "hasEmail": "mailto:kthorne@usgs.gov"
+            },
+            "identifier": "doi-05652fc6-b0cd-497a-8e60-c9ca56558c66",
+            "accessLevel": "public",
+            "spatial": "{\"type\": \"Polygon\", \"coordinates\": [[[-121.8443, 37.3322], [-122.7384, 37.3322], [-122.7384, 38.3689], [-121.8443, 38.3689], [-121.8443, 37.3322]]]}",
+            "distribution": [
+              {
+                "@type": "dcat:Distribution", 
+                "format": "HTML", 
+                "title": "Digital Data", 
+                "accessURL": "https://doi.org/10.5066/P97J9GU8"
+              }, 
+              {
+                "@type": "dcat:Distribution", 
+                "title": "Web Resource", 
+                "accessURL": "https://doi.org/10.5066/P97J9GU8"
+              },
+              {
+                "@type": "dcat:Distribution", 
+                "title": "Web Resource", 
+                "accessURL": "https://doi.org/10.1016/j.rse.2016.09.020",
+                "description": "j.rse.2016.09.020"
+              },
+              {
+                  "@type": "dcat:Distribution",
+                  "conformsTo": "http://www.isotc211.org/2005/gmi",
+                  "description": "The ISO metadata file",
+                  "downloadURL": "https://data.doi.gov/harvest/object/615e2452-9192-4611-bdbd-ebc130ff7967",
+                  "format": "XML",
+                  "mediaType": "text/xml",
+                  "title": "ISO Metadata"
+              }
+            ]
+        }
+    ]
+}
