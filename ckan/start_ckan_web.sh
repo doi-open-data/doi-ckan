@@ -6,23 +6,10 @@ paster --plugin=ckan config-tool $CKAN_INI "ckan.plugins = $CKAN__PLUGINS"
 
 
 # Update test-core.ini DB, SOLR & Redis settings
-echo "Loading test settings into test-core.ini"
+echo "Loading test settings into our ini file"
 paster --plugin=ckan config-tool $CKAN_INI \
-    "sqlalchemy.url = $TEST_CKAN_SQLALCHEMY_URL" \
     "ckan.auth.public_user_details = false" \
     "ckan.auth.create_user_via_web = false" \
-    "ckan.datastore.write_url = $TEST_CKAN_DATASTORE_WRITE_URL" \
-    "ckan.datastore.read_url = $TEST_CKAN_DATASTORE_READ_URL" \
-    "solr_url = $TEST_CKAN_SOLR_URL" \
-    "ckan.redis.url = $TEST_CKAN_REDIS_URL"
-
-# Update the theme for DOI
-paster --plugin=ckan config-tool $CKAN_INI \
-    "ckan.site_title = $CKAN__SITE_TITLE" \
-    "ckan.site_description = $CKAN__SITE_DESCRIPTION" \
-    "ckan.site_intro_text = $CKAN__SITE_INTRO_TEXT" \
-    "ckan.site_logo = $CKAN__SITE_LOGO" \
-    "ckan.site_about = $CKAN__SITE_ABOUT" \
 
 # Run the prerun script to init CKAN and create the default admin user
 sudo -u ckan -EH python prerun.py
