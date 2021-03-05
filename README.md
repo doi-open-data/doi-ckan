@@ -27,6 +27,15 @@ If you want a fully debuggable instance:
 1. To create an admin user, run `make test-user` (creates username: `test-user` and pwd: `test-user-password`)
 1. To stop your containers and volumes run `make clean`
 
+#### Debug
+If you want to be able to use pdb to debug the code, after running build and up run:
+
+`docker-compose stop ckan-web && docker-compose run --service-ports ckan-web`
+
+If you need to run a one-off ckan command (like rebuild search-index), use the following syntax:
+
+`docker-compose exec ckan-worker bash -c 'paster --plugin=ckan search-index rebuild -c $CKAN_INI'`
+
 ### Release
 
 To build a production ready version of the application, you will want to clean and rebuild:

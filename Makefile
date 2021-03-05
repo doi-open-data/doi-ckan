@@ -16,6 +16,9 @@ check-harvests:
 clean:
 	docker-compose down -v --remove-orphans
 
+debug:
+	docker-compose run --service-ports ckan-web
+
 finalize-harvest:
 	docker-compose exec ckan-worker supervisorctl start ckan-worker-run
 
