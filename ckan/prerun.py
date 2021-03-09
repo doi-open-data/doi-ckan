@@ -49,6 +49,7 @@ def check_db_connection(conn_str, retry=None):
 
     try:
         connection = psycopg2.connect(conn_str)
+        print '[prerun] Able to connect to the db at', conn_st
 
     except psycopg2.Error as e:
         print str(e)
@@ -82,22 +83,6 @@ def check_solr_connection(retry=None):
 
 
 def init_db():
-    # we must install postgis first
-    try:
-        conn_str = os.environ.get('CKAN_SQLALCHEMY_URL')
-        connection = psycopg2.connect(conn_str)
-        cur = connection.cursor()
-        cur.execute("CREATE EXTENSION POSTGIS;")
-        cur.execute("ALTER VIEW geometry_columns OWNER TO ckan;")
-        cur.execute("ALTER TABLE spatial_ref_sys OWNER TO ckan;")
-        conn.commit()
-        cur.close()
-        conn.close()
-        print('[prerun] postgis install successfully!')
-
-    except psycopg2.Error as e:
-        print str(e)
-        print('[prerun] failed to install postgis or connect to db')
 
     # now we can init the db
     db_command = ['paster', '--plugin=ckan', 'db',
@@ -115,6 +100,26 @@ def init_db():
         else:
             print e.output
             raise e
+
+    # we must install postgis first
+    try:
+        print '[prerun] Starting the init db process:'
+        conn_str = os.environ.get('CKAN_SQLALCHEMY_URL')
+        connection = psycopg2.connect(conn_str)
+        cur = connection.cursor()
+        cur.execute("CREATE EXTENSION POSTGIS;")
+        cur.execute("ALTER VIEW geometry_columns OWNER TO ckan;")
+        cur.execute("ALTER TABLE spatial_ref_sys OWNER TO ckan;")
+        conn.commit()
+        cur.close()
+        conn.close()
+        print('[prerun] postgis install successfully!')
+
+    except Exception as e:
+        print '[prerun]', str(e)
+        print '[prerun] failed to install postgis or connect to db. Going to move forward.'
+
+
 
 
 def init_datastore_db():
@@ -208,8 +213,8 @@ if __name__ == '__main__':
         print '[prerun] Maintenance mode, skipping setup...'
     else:
         check_main_db_connection()
+        # update_plugins()
         init_db()
-        update_plugins()
         check_datastore_db_connection()
         init_datastore_db()
         check_solr_connection()
