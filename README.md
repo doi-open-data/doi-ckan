@@ -39,12 +39,16 @@ If you need to run a one-off ckan command (like rebuild search-index), use the f
 ### Release
 
 To build a production ready version of the application, you will want to clean and rebuild:
-`make nocache=TRUE clean build-prod up-prod`. This will clean and rebuild the ckan image
+`clean build-prod up-prod`. This will clean and rebuild the ckan image
 for production, ignoring any cache.
 
-Then, you can push this image to AWS for deployment by following the following steps. For many commands, you'll need the ecr-uri which you can find by running `ecr describe-repositories`
+Pushing to aws is now automated through github actions. It will build, run tests, and deploy to aws upon a push to the `production` branch.
 
-Authenticate your AWS cli with:
+If you need to manually push your image, follow the steps below.
+
+Then, you can push this image to AWS for deployment by following the following steps. For many commands, you'll need the ecr-uri which you can find by running `aws ecr describe-repositories` and referencing the `repositoryUri` field.
+
+Authenticate your AWS cli with docker:
 `aws ecr get-login-password --region us-east-1| docker login --username AWS --password-stdin <ecr-uri>`
 
 Then the steps are to 1) tag your image & 2) push to aws
@@ -55,7 +59,7 @@ You'll want to run `docker images` to list all images on your current system. As
 The second part is what we want the repo:tag name to be on aws. In this case it's repo: `doi-ckan` and tag: `ckan`
 
 In the first iteration, the tag command is:
-`docker tag doi-ckan_ckan-web:latest <ecr-repo-uri>/doi-ckan:ckan`
+`docker tag doi-ckan_ckan-web:latest <ecr-repo-uri>:ckan`
 
 Push:
 Now push your image with this command:
