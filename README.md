@@ -71,6 +71,7 @@ This will update the requirements.txt file, build, and bring it up.
 You should be able to see the application if you point your browser to localhost:5000.
 Since integration tests are not implemented, manual verification of key usage 
 (harvests, dataset pages, api, etc) should be done before pushing.
+_TODO: Change this to `make requirements test`_
 
 ### FGDC2ISO
 

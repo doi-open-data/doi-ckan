@@ -3,10 +3,10 @@ version: "3"
 
 services:
   ckan-web:
-    # image: doi-ckan:latest
-    image: doi-ckan:dev
-    # command: "/srv/app/start_ckan_web.sh"
-    command: "/srv/app/start_ckan_web_dev.sh"
+    image: doi-ckan:latest
+    # image: doi-ckan:dev
+    command: "/srv/app/start_ckan_web.sh"
+    # command: "/srv/app/start_ckan_web_dev.sh"
     env_file:
       - .env
     depends_on:
