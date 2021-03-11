@@ -63,11 +63,11 @@ Now push your image with this command:
 
 ### Updating Dependencies
 TODO: Fix this
-The application uses the [requirements-freeze.txt file](./ckan/requirements-freeze.txt) for it dependency management. This is updated via the [requirements.txt file](./ckan/requirements.txt). To update the dependencies you need to run:
+The application uses the [requirements.txt file](./requirements/requirements.txt) for it dependency management. This is updated via the [requirements.in.txt file](./requirements/requirements.in.txt). To update the dependencies you need to run:
 
-`make clean build requirements up`
+`make requirements build up`
 
-This will start a fresh build, update the requirements-freeze.txt file, and bring it up.
+This will update the requirements.txt file, build, and bring it up.
 You should be able to see the application if you point your browser to localhost:5000.
 Since integration tests are not implemented, manual verification of key usage 
 (harvests, dataset pages, api, etc) should be done before pushing.

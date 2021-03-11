@@ -29,6 +29,7 @@ prune:
 	docker system prune -a
 
 requirements:
+	docker-compose run --rm -T ckan-web requirements/requirements.sh
 	docker-compose run --rm -T ckan-web pip --quiet freeze > ckan/requirements-freeze.txt
 
 seed-harvests:

@@ -1,7 +1,6 @@
 # FROM openknowledge/ckan-base:2.8 -- in future, may use this as well
 FROM openknowledge/ckan-base:2.8
 
-ARG REQUIREMENTS_FILE=requirements-freeze.txt
 ARG APP_DIR=/srv/app
 # specify the build arg (either development or prod)
 ARG CKAN_ENV=PROD
@@ -18,7 +17,7 @@ RUN cd /geos && \
     make -j 1 && \
     make install
 
-COPY ${REQUIREMENTS_FILE} ${APP_DIR}/requirements.txt
+COPY requirements.txt ${APP_DIR}/requirements.txt
 
 # some errors installing cryptography with the ckan-base image see:
 # https://github.com/geerlingguy/JJG-Ansible-Windows/issues/28#ref-commit-b854e7a
