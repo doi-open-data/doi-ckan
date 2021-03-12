@@ -88,11 +88,10 @@ def init_db():
         connection = psycopg2.connect(conn_str)
         cur = connection.cursor()
         cur.execute("CREATE EXTENSION POSTGIS;")
-        cur.execute("ALTER VIEW geometry_columns OWNER TO ckan;")
-        cur.execute("ALTER TABLE spatial_ref_sys OWNER TO ckan;")
-        conn.commit()
-        cur.close()
-        conn.close()
+        cur.execute("ALTER VIEW geometry_columns OWNER TO doi_ckan_admin;")
+        cur.execute("ALTER TABLE spatial_ref_sys OWNER TO doi_ckan_admin;")
+        connection.commit()
+        connection.close()
         print('[prerun] postgis install successfully!')
 
     except psycopg2.Error as e:
