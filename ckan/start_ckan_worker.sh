@@ -31,6 +31,5 @@ else
   "$@"
 fi
 
-
 chown root:root /etc/crontabs/root && /usr/sbin/crond -f & 
 supervisord --configuration /etc/supervisord.conf

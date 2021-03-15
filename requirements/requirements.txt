@@ -1,45 +1,33 @@
-alabaster==0.7.12
 asn1crypto==1.4.0
 attrs==20.3.0
 Babel==2.3.4
-Beaker==1.9.0
-beautifulsoup4==4.5.1
+Beaker==1.11.0
 bleach==3.1.5
-blinker==1.4
 boto==2.49.0
-certifi==2020.6.20
+certifi==2020.12.5
 cffi==1.12.3
 chardet==3.0.4
--e git+https://github.com/ckan/ckan.git@eca78d5df65414249c5a76620c1acae1ddc76cc3#egg=ckan
--e git+https://github.com/GSA/ckanext-datagovcatalog.git@531d20c925b4b8954e71a25f992ebbf9000b4c30#egg=ckanext_datagovcatalog
+-e git+https://github.com/ckan/ckan.git@1e10689a4e9936069cb1c0b2fc8bf630c530c246#egg=ckan
+-e git+https://github.com/GSA/ckanext-datagovcatalog.git@2225231e129e4aacb35939dcd2765ed7f9216bb1#egg=ckanext_datagovcatalog
 -e git+https://github.com/doi-open-data/ckanext-datagovtheme.git@826d495a5cb0de025b9ad26b11ceb5722635d0a1#egg=ckanext_datagovtheme
--e git+https://github.com/GSA/ckanext-datajson.git@4d5994c3f1a5787fbfcf64336d1cfdffe161b4ea#egg=ckanext_datajson
+-e git+https://github.com/doi-open-data/ckanext-datajson.git@19cb4deace1f6edce4a2acda7f7d01ee67fcf36b#egg=ckanext_datajson
 -e git+https://github.com/ckan/ckanext-dcat@6b7ec505f303fb18e0eebcebf67130d36b3dca82#egg=ckanext_dcat
--e git+https://github.com/okfn/ckanext-envvars.git@8602376a92a77b4f2d41763b6823d041469fa08e#egg=ckanext_envvars
--e git+https://github.com/GSA/ckanext-geodatagov.git@5393def8735fd151f9f9a70fa72bd795d9375342#egg=ckanext_geodatagov
--e git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@b84b93098e80b61c1073236958c33b096987ac3a#egg=ckanext_googleanalyticsbasic
--e git+https://github.com/ckan/ckanext-harvest.git@d00553831e20ae7c6737206ddb8a613b494f2b86#egg=ckanext_harvest
+ckanext-envvars==0.0.1
+-e git+https://github.com/GSA/ckanext-geodatagov.git@020e54d330c96f17f9ca6cd5429f2aa335ad37d0#egg=ckanext_geodatagov
+-e git+https://github.com/GSA/ckanext-googleanalyticsbasic.git@f0b75cf965e477a84f044885b27880782a48969c#egg=ckanext_googleanalyticsbasic
+-e git+https://github.com/ckan/ckanext-harvest.git@6222e38c85f04027f3fd9b2894a9c26ee7bd172f#egg=ckanext_harvest
 -e git+https://github.com/ckan/ckanext-spatial.git@4ac25f19aa4eb9c798451f5eeb3084f907ccc003#egg=ckanext_spatial
 ckantoolkit==0.0.3
 click==6.7
 configparser==4.0.2
 contextlib2==0.6.0.post1
-coverage==5.3
-coveralls==1.11.1
 cryptography==2.7
-decorator==4.2.1
-docopt==0.6.2
-docutils==0.12
+decorator==4.4.2
 enum34==1.1.10
-extras==1.0.0
-factory-boy==2.1.1
 fanstatic==0.12
-first==2.0.2
-fixtures==3.0.0
 Flask==0.12.4
 Flask-Babel==0.11.2
-Flask-DebugToolbar==0.10.1
-FormEncode==1.3.1
+FormEncode==2.0.0
 funcsigs==1.0.2
 functools32==3.2.3.post2
 future==0.18.2
@@ -47,48 +35,40 @@ Genshi==0.7.3
 GeoAlchemy==0.7.2
 GeoAlchemy2==0.5.0
 geomet==0.3.0
-gevent==1.2.2
+gevent==21.1.2
 google-compute-engine==2.8.13
 greenlet==0.4.12
 gunicorn==19.10.0
-html5lib==1.0.1
-httpretty==0.8.3
+html5lib==1.1
 idna==2.8
-imagesize==1.2.0
 importlib-metadata==2.1.1
 ipaddress==1.0.23
 isodate==0.6.0
-itsdangerous==0.24
+itsdangerous==1.1.0
 Jinja2==2.10.3
 jsonschema==3.2.0
 LEPL==5.1.3
-linecache2==1.0.0
 lxml==4.6.2
-Mako==1.0.7
+Mako==1.1.4
 Markdown==3.1.1
-MarkupSafe==1.0
-mock==2.0.0
-mox3==0.28.0
+MarkupSafe==1.1.1
 nose==1.3.7
 ofs==0.4.2
 OWSLib==0.8.6
-packaging==20.4
+packaging==20.9
 Pairtree===0.7.1-T
 passlib==1.7.3
 Paste==1.7.5.1
-PasteDeploy==1.5.2
+PasteDeploy==2.1.1
 PasteScript==2.0.2
 pathlib2==2.3.5
 pbr==1.10.0
-pika==1.1.0
-pip-tools==1.7.0
+pika==1.2.0
 ply==3.4
 polib==1.0.7
 psycopg2==2.7.3.2
-pycodestyle==2.2.0
 pycparser==2.20
-pyfakefs==2.9
-Pygments==2.2.0
+Pygments==2.5.2
 Pylons==0.9.7
 pyOpenSSL==18.0.0
 pyparsing==2.4.7
@@ -96,10 +76,9 @@ pyrsistent==0.16.1
 pysolr==3.6.0
 python-dateutil==1.5
 python-magic==0.4.15
-python-mimeparse==1.6.0
 pytz==2016.7
 pyutilib.component.core==4.6.4
-PyYAML==5.3.1
+PyYAML==5.4.1
 -e git+https://github.com/asl2/PyZ3950.git@c2282c73182cef2beca0f65b1eb7699c9b24512e#egg=PyZ3950
 rdflib==4.2.1
 rdflib-jsonld==0.4.0
@@ -115,22 +94,13 @@ scandir==1.10.0
 Shapely==1.7.1
 simplejson==3.10.0
 six==1.15.0
-snowballstemmer==2.0.0
 SPARQLWrapper==1.8.5
-Sphinx==1.7.1
-sphinx-rtd-theme==0.3.1
-sphinxcontrib-websupport==1.1.2
 SQLAlchemy==1.1.11
 sqlalchemy-migrate==0.10.0
 sqlparse==0.2.2
-supervisor==4.2.1
 Tempita==0.5.2
-testtools==2.4.0
-traceback2==1.4.0
-typing==3.7.4.3
 tzlocal==1.3
 unicodecsv==0.14.1
-unittest2==1.1.0
 urllib3==1.25.9
 vdm==0.14
 webencodings==0.5.1
@@ -140,4 +110,5 @@ WebOb==1.0.8
 WebTest==1.4.3
 Werkzeug==0.15.6
 zipp==1.2.0
+zope.event==4.5.0
 zope.interface==4.3.2

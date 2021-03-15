@@ -27,6 +27,15 @@ If you want a fully debuggable instance:
 1. To create an admin user, run `make test-user` (creates username: `test-user` and pwd: `test-user-password`)
 1. To stop your containers and volumes run `make clean`
 
+#### Debug
+If you want to be able to use pdb to debug the code, after running build and up run:
+
+`docker-compose stop ckan-web && docker-compose run --service-ports ckan-web`
+
+If you need to run a one-off ckan command (like rebuild search-index), use the following syntax:
+
+`docker-compose exec ckan-worker bash -c 'paster --plugin=ckan search-index rebuild -c $CKAN_INI'`
+
 ### Release
 
 To build a production ready version of the application, you will want to clean and rebuild:
@@ -58,14 +67,15 @@ Now push your image with this command:
 
 ### Updating Dependencies
 TODO: Fix this
-The application uses the [requirements-freeze.txt file](./ckan/requirements-freeze.txt) for it dependency management. This is updated via the [requirements.txt file](./ckan/requirements.txt). To update the dependencies you need to run:
+The application uses the [requirements.txt file](./requirements/requirements.txt) for it dependency management. This is updated via the [requirements.in.txt file](./requirements/requirements.in.txt). To update the dependencies you need to run:
 
-`make clean build requirements up`
+`make requirements build up`
 
-This will start a fresh build, update the requirements-freeze.txt file, and bring it up.
+This will update the requirements.txt file, build, and bring it up.
 You should be able to see the application if you point your browser to localhost:5000.
 Since integration tests are not implemented, manual verification of key usage 
 (harvests, dataset pages, api, etc) should be done before pushing.
+_TODO: Change this to `make requirements test`_
 
 ### FGDC2ISO
 

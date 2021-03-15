@@ -31,6 +31,8 @@ services:
       - solr
       - redis
       - ckan-web
+    volumes:
+      - ./src:/srv/app/src_extensions
 
   db:
     env_file:

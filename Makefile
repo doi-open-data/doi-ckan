@@ -16,6 +16,9 @@ check-harvests:
 clean:
 	docker-compose down -v --remove-orphans
 
+debug:
+	docker-compose run --service-ports ckan-web
+
 finalize-harvest:
 	docker-compose exec ckan-worker supervisorctl start ckan-worker-run
 
@@ -26,7 +29,7 @@ prune:
 	docker system prune -a
 
 requirements:
-	docker-compose run --rm -T ckan-web pip --quiet freeze > ckan/requirements-freeze.txt
+	docker-compose run --rm -T ckan-web /requirements/requirements.sh
 
 seed-harvests:
 	python tools/harvest_source_import/import_harvest_sources.py
