@@ -21,6 +21,11 @@ https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.2/
 RUN echo name=$SOLR_CORE > /opt/solr/server/solr/$SOLR_CORE/core.properties
 RUN echo dataDir=$/opt/solr/server/solr/$SOLR_CORE/data > /opt/solr/server/solr/$SOLR_CORE/core.properties
 
+# Tighten the admin privledges on SOLR
+RUN echo "myuser: password, solradmin" >> /opt/solr/server/etc/realm.properties
+COPY jetty.xml /opt/solr/server/etc/jetty.xml
+COPY webdefault.xml /opt/solr/server/etc/jetty.xml
+
 # Giving ownership to Solr
 
 USER root

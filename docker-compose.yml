@@ -49,6 +49,9 @@ services:
       - "8983:8983"
     volumes:
       - solr_data:/opt/solr/server/solr/ckan/data/index
+    env_file:
+      - .env
+
 
   redis:
     image: redis:alpine
