@@ -50,7 +50,6 @@ services:
     volumes:
       - solr_data:/opt/solr/server/solr/ckan/data/index
 
-
   redis:
     image: redis:alpine
 
