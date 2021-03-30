@@ -48,7 +48,7 @@ services:
     ports:
       - "8983:8983"
     volumes:
-      - solr_data:/opt/solr/server/solr/ckan/data/index
+      - solr_data:/opt/solr/server/solr/ckan/data
 
   redis:
     image: redis:alpine
